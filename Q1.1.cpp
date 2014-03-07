@@ -23,9 +23,29 @@ bool isUnique1(string s)
     }
      return true;
 }
+
+bool isUnique2(string s){
+    int characters[8];
+    memset(characters, 0, sizeof(characters));
+    for(int i=0;i<s.length();i++)
+    {
+        int temp=(int)s[i];
+        int index=temp/32;
+        int shift=temp%32;
+        if((characters[index] &1<<shift)==1)
+        {
+            return false;
+        }else{
+            characters[index]|=1<<shift;
+        }
+    }
+    return true;
+    
+}
+
 int main()
 {
-   bool check = isUnique1("fol win g"); 
+   bool check = isUnique2("fol win g"); 
    if(check){
        cout<<"string is unique";
    }
